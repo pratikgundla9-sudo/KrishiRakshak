@@ -1,44 +1,15 @@
-<script>
-  // Automatic Phone Stream Overrider for KrishiRakshak
-  setInterval(() => {
-    // 1. Target any video element in the camera view
-    const video = document.querySelector('video');
-    if (video && !video.dataset.replaced) {
-      video.dataset.replaced = "true";
-      video.pause();
-      video.style.display = 'none';
-
-      // 2. Insert the direct phone MJPEG stream
-      let img = document.getElementById('phone-live-feed');
-      if (!img) {
-        img = document.createElement('img');
-        img.id = 'phone-live-feed';
-        img.src = 'http://localhost:8080/video_feed';
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.maxHeight = '480px';
-        img.style.objectFit = 'contain';
-        img.style.borderRadius = '8px';
-        img.style.background = '#000';
-        video.parentNode.insertBefore(img, video);
-      }
-    }
-
-    // 3. Keep Capture Leaf Image functional
-    const captureBtn = Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Capture'));
-    if (captureBtn && !captureBtn.dataset.hooked) {
-      captureBtn.dataset.hooked = "true";
-      captureBtn.addEventListener('click', () => {
-        const img = document.getElementById('phone-live-feed');
-        if (img) {
-          const canvas = document.createElement('canvas');
-          canvas.width = img.naturalWidth || 640;
-          canvas.height = img.naturalHeight || 480;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0);
-          console.log("Captured leaf snapshot successfully!");
-        }
-      });
-    }
-  }, 500);
-</script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="KrishiRakshak — Solar Operated AI Smart Crop Analysis Robot. Intelligent Crop Monitoring, Mapping and Targeted Field Assistance." />
+    <title>KrishiRakshak — Solar Operated AI Smart Crop Analysis Robot</title>
+    <script type="module" crossorigin src="/assets/index-C3s_-uK9.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CIrPSZZi.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
